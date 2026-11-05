@@ -445,20 +445,6 @@ html[data-deck] .slide.is-active .reveal-stagger > * {
 .marquee:focus-within .marquee-track {
   animation-play-state: paused;
 }
-/* The Skills slide's list: a thin glass thumb like the page's, room on the right so cards clear it. */
-.skill-list {
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
-}
-@media (min-width: 768px) and (min-height: 600px) {
-  .skill-list {
-    padding-right: 6px;
-    padding-bottom: 20px;
-    margin-right: -6px;
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 22px), transparent);
-    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 22px), transparent);
-  }
-}
 /* A line that travels along the Orchestrator's links. */
 @keyframes linkPulse {
   0%, 100% { opacity: 0.25; }

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "skills": "node scripts/gen-skills.mjs"
+    "skills": "node scripts/skills-data.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.545.0",
