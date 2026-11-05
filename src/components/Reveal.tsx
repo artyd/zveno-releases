@@ -10,12 +10,16 @@ export function Reveal({
   delay = 0,
   stagger,
   as: Tag = "div",
+  role,
+  ariaLabel,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   stagger?: number;
   as?: "div" | "li" | "section";
+  role?: string;
+  ariaLabel?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -56,7 +60,7 @@ export function Reveal({
 
   return (
     // @ts-expect-error ref type differs per tag; all are HTMLElements
-    <Tag ref={ref} className={`${staggered ? "reveal-stagger" : "reveal"} ${className}`} style={style}>
+    <Tag ref={ref} className={`${staggered ? "reveal-stagger" : "reveal"} ${className}`} style={style} role={role} aria-label={ariaLabel}>
       {kids}
     </Tag>
   );
