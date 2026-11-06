@@ -51,6 +51,27 @@ const SCREENS = [
     caption: "Skills your agents follow.",
     alt: "Library tab: active skills in the project with usage, agents and toggles.",
   },
+  {
+    id: "design",
+    label: "Design",
+    shot: "studio",
+    caption: "A design studio with the designer beside you.",
+    alt: "Design studio: desktop and phone artboards, layers, an inspector with type and colour tokens, and the designer's chat on the canvas.",
+  },
+  {
+    id: "connections",
+    label: "Connections",
+    shot: "connections",
+    caption: "Decide what each connection may do.",
+    alt: "Settings, Connections: cards for Claude Code, Codex, GitHub and Vercel with sign-in, keys and an Access level each.",
+  },
+  {
+    id: "computer",
+    label: "Computer use",
+    shot: "computer-use",
+    caption: "Agents use your apps, within your switches.",
+    alt: "Settings, Computer use: switches for clicking and typing, browsers, apps and files, terminals, system settings and administrator windows.",
+  },
 ] as const;
 
 const LABELS = SCREENS.map((s) => s.label);

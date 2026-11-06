@@ -22,8 +22,8 @@ const POINTS: { icon: LucideIcon; title: string; body: string }[] = [
   },
   {
     icon: ShieldCheck,
-    title: "Nothing ships without your OK",
-    body: "Agents save versions locally. Pushes to GitHub and releases to production wait for your approval.",
+    title: "You decide what each connection may do",
+    body: "Claude Code, Codex, GitHub, Vercel and your MCP servers each have an Access level. Releases to production and merges into main always wait for your OK.",
   },
 ];
 
