@@ -40,9 +40,9 @@ const SCREENS = [
   {
     id: "preview",
     label: "Preview",
-    shot: "preview",
-    caption: "See the app as it is built.",
-    alt: "Preview tab: the app running in a desktop device frame with zoom and device controls.",
+    shot: "studio",
+    caption: "See it as it is built, and design it in place.",
+    alt: "Preview tab on its Design target: desktop and phone artboards, layers, an inspector with type and colour tokens, and the designer's chat on the canvas; Web, iOS, Android, Video and Artifacts are the other targets.",
   },
   {
     id: "library",
@@ -52,18 +52,11 @@ const SCREENS = [
     alt: "Library tab: active skills in the project with usage, agents and toggles.",
   },
   {
-    id: "design",
-    label: "Design",
-    shot: "studio",
-    caption: "A design studio with the designer beside you.",
-    alt: "Design studio: desktop and phone artboards, layers, an inspector with type and colour tokens, and the designer's chat on the canvas.",
-  },
-  {
     id: "connections",
     label: "Connections",
     shot: "connections",
     caption: "Decide what each connection may do.",
-    alt: "Settings, Connections: cards for Claude Code, Codex, GitHub and Vercel with sign-in, keys and an Access level each.",
+    alt: "Settings, Connections: cards for Claude Code, Codex, Gemini CLI, Grok CLI, GitHub and Vercel, each with its logo, sign-in, keys and an Access level.",
   },
   {
     id: "computer",
