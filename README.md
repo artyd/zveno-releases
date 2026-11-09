@@ -1,4 +1,14 @@
-# zveno-site
+# Zveno site and releases
+
+This repository is the public home of Zveno, the desktop app that runs a team of AI coding agents: the website and the installers.
+
+## Download
+
+Get the latest `Zveno-Setup-<version>.exe` from [Releases](https://github.com/artyd/zveno-releases/releases/latest).
+
+Each release also carries `latest.yml` and a `.sig` file. Zveno checks the Ed25519 signature of every update before it installs it.
+
+## The site
 
 Marketing site for Zveno, the desktop app that runs a team of AI coding agents.
 
