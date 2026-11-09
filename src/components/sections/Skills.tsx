@@ -23,9 +23,9 @@ function SkillCard({ s }: { s: Skill }) {
         <span className="label">{s.pack}</span>
         {s.core ? <span className="rounded-[6px] bg-ok-bg px-2 py-0.5 font-mono text-[10.5px] text-ok">Core</span> : null}
       </div>
-      <h3 className="mt-[clamp(6px,1.4vh,14px)] font-mono text-[15px] font-semibold tracking-[-0.01em]">{s.id}</h3>
-      <p className="font-mono text-[11px] text-faint">zveno</p>
-      <p className="mt-[clamp(4px,1vh,10px)] text-[12.5px] leading-snug text-muted">{s.desc}</p>
+      <h3 className="mt-[clamp(6px,1.4vh,14px)] text-[15px] font-semibold tracking-[-0.01em]">{s.title}</h3>
+      <p className="font-mono text-[11px] text-faint">{s.id} · zveno</p>
+      <p className="mt-[clamp(4px,1vh,10px)] line-clamp-3 text-[12.5px] leading-snug text-muted">{s.desc}</p>
     </article>
   );
 }
