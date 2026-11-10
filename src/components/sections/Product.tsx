@@ -14,42 +14,42 @@ const SCREENS = [
     label: "Feed",
     shot: "feed-open",
     caption: "Every step, in plain sight.",
-    alt: "Feed tab: an agent's messages with expandable Plan, Read, Edit and Run steps.",
+    alt: "Feed tab: an agent's messages with Read, Plan, Edit, Write and Run steps, one Edit open on its diff, and the team of agents in the sidebar.",
   },
   {
     id: "board",
     label: "Board",
     shot: "board",
     caption: "All tasks across the team.",
-    alt: "Board tab: a kanban board of tasks with agent mascots, models, progress and budgets.",
+    alt: "Board tab: tasks in Queued, In progress, Blocked and Done, each with its agent's mascot, model, tokens and cost.",
   },
   {
     id: "inbox",
     label: "Decisions",
     shot: "inbox",
     caption: "One inbox for what needs you.",
-    alt: "Decision inbox: a deploy approval card with CI checks and Approve, Reject and Reply buttons.",
+    alt: "Decision inbox: an agent asks where reminders should run, with Send answer, Open agent and Skip.",
   },
   {
     id: "project",
     label: "Project",
     shot: "project",
     caption: "Know how close you are to MVP.",
-    alt: "Project tab: readiness for MVP ring, items to reach MVP and what can wait.",
+    alt: "Project tab: readiness for MVP, time and cost to get there, and the items to reach it with the agent on each.",
   },
   {
     id: "preview",
     label: "Preview",
-    shot: "studio",
-    caption: "See it as it is built, and design it in place.",
-    alt: "Preview tab on its Design target: desktop and phone artboards, layers, an inspector with type and colour tokens, and the designer's chat on the canvas; Web, iOS, Android, Video and Artifacts are the other targets.",
+    shot: "preview",
+    caption: "See it as it is built, on every screen size.",
+    alt: "Preview tab: the app from its dev server on desktop, laptop, tablet and phone side by side; Design, iOS, Android, Video and Artifacts are the other targets.",
   },
   {
     id: "library",
     label: "Library",
     shot: "library",
     caption: "Skills your agents follow.",
-    alt: "Library tab: active skills in the project with usage, agents and toggles.",
+    alt: "Library tab: the skills in this project, what each one does and when it runs, its use this week and a switch.",
   },
   {
     id: "connections",
@@ -75,7 +75,7 @@ const INTERVAL = 3500;
 const ROSTER: { name: string; look: Look; mood: Mood; badge?: Badge; status: string; tone: string }[] = [
   { name: "Orchestrator", look: ORCH_LOOK, mood: "idle", status: "lead", tone: "text-answer bg-answer-bg" },
   { name: "frontend", look: { hue: 250, pat: "dots" }, mood: "working", status: "working", tone: "text-ok bg-ok-bg" },
-  { name: "backend-api", look: { hue: 160, pat: "chevron" }, mood: "waiting", badge: "q", status: "asks you", tone: "text-warn bg-warn-bg" },
+  { name: "backend", look: { hue: 160, pat: "chevron" }, mood: "waiting", badge: "q", status: "asks you", tone: "text-warn bg-warn-bg" },
   { name: "tests", look: { hue: 330, pat: "spots" }, mood: "queued", status: "queued", tone: "text-accent bg-accent-bg" },
 ];
 
@@ -147,9 +147,9 @@ function Question() {
       <div className="flex items-center gap-1.5">
         <Bug look={{ hue: 160, pat: "chevron" }} mood="waiting" size={18} />
         <span className="font-mono text-[10px] font-semibold tracking-wider text-answer">QUESTION</span>
-        <span className="font-mono text-[10px] text-faint">backend-api</span>
+        <span className="font-mono text-[10px] text-faint">backend</span>
       </div>
-      <p className="mt-1.5 text-[12.5px] leading-snug font-medium">SQLite file for now, or a hosted database?</p>
+      <p className="mt-1.5 text-[12.5px] leading-snug font-medium">Where should reminders run?</p>
       <div className="mt-2 flex gap-1.5">
         <span className="rounded-[7px] bg-strong px-2.5 py-1 text-[11px] font-semibold text-strong-text">Send answer</span>
         <span className="rounded-[7px] border border-line-strong px-2.5 py-1 text-[11px] font-semibold">Skip</span>
@@ -165,7 +165,7 @@ function Toast() {
       <span className="min-w-0">
         <span className="block text-[12px] leading-tight font-semibold">tests finished</span>
         <span className="flex items-center gap-1 font-mono text-[10.5px] text-ok">
-          <Check size={11} strokeWidth={2.5} /> 41 passed
+          <Check size={11} strokeWidth={2.5} /> 14 passed
         </span>
       </span>
       <span className="ml-auto self-start font-mono text-[9.5px] text-faint">now</span>

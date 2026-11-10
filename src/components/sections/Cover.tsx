@@ -47,8 +47,8 @@ function Glow() {
 function ScrollHint() {
   return (
     <a
-      href="#how"
-      aria-label="Next: how it works"
+      href="#film"
+      aria-label="Next: the film"
       className="absolute bottom-[clamp(12px,3vh,32px)] left-1/2 flex -translate-x-1/2 flex-col items-center gap-1 rounded-full px-3 py-1 font-mono text-[10.5px] tracking-[0.12em] text-faint uppercase transition-colors hover:text-text max-md:hidden"
     >
       <span className="[@media(max-height:820px)]:hidden">Scroll</span>
@@ -97,8 +97,8 @@ export function Cover() {
           <WindowsIcon />
           Download for Windows
         </a>
-        <a href="#how" className="btn btn-ghost w-full !min-h-[52px] !rounded-[12px] !px-7 !text-[15.5px] sm:w-auto">
-          See how it works
+        <a href="#film" className="btn btn-ghost w-full !min-h-[52px] !rounded-[12px] !px-7 !text-[15.5px] sm:w-auto">
+          Watch the film
           <ArrowDown size={16} />
         </a>
       </div>
