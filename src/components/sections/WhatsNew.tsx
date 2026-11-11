@@ -1,55 +1,55 @@
-import { Check, FolderOpen, Gauge, MessageSquareQuote, Moon, MousePointer2, SquareTerminal, Users } from "lucide-react";
+import { Check, Copy, Gauge, MousePointerClick, Rocket, Server, SlidersHorizontal, SquareTerminal } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { Slide } from "../Slide";
 
-// What 0.10.1 adds, from the release's feature list (Zveno repo, .scratch/fixes-0-10-1/features.md and README.md).
+// What 0.10.3 adds, from the release notes (Zveno repo, apps/desktop/release-notes/0.10.3.md).
 const FEATURES: { icon: LucideIcon; title: string; body: string }[] = [
   {
-    icon: Gauge,
-    title: "Model and effort for every agent",
-    body: "A pill under the composer sets the model and effort for Claude Code, Codex and Terminal agents. The chosen level is filled.",
+    icon: Server,
+    title: "Autopilot on your server",
+    body: "Add your server over SSH in Connections. Your tasks keep running there while your PC sleeps; Update local project brings the work back.",
   },
   {
-    icon: Users,
-    title: "Who leads, who builds",
-    body: "Pick the Orchestrator's model and the models its agents build with, for each provider.",
-  },
-  {
-    icon: MessageSquareQuote,
-    title: "Copy, quote, edit",
-    body: "Copy a reply or any block. Quote part of a reply to ask about it. Edit a sent prompt and send it again.",
-  },
-  {
-    icon: FolderOpen,
-    title: "Project files",
-    body: "Read the project's files in Zveno: code highlighted, Markdown rendered, changed lines marked. Secret values stay masked.",
-  },
-  {
-    icon: Moon,
-    title: "Autopilot",
-    body: "Keeps Windows awake with the lid closed while tasks run on the charger, then puts your power settings back.",
-  },
-  {
-    icon: MousePointer2,
-    title: "The agent's cursor",
-    body: "During Computer use the agent's cursor shows on screen with its mascot and what it is doing. It never shows in its screenshots.",
+    icon: SlidersHorizontal,
+    title: "Model and effort under the composer",
+    body: "Model tabs and an effort slider you drag, for every agent. The colour warms as the effort rises.",
   },
   {
     icon: SquareTerminal,
-    title: "A clear start",
-    body: "With no agent running, the Feed shows how to start one in the Terminal, in three steps.",
+    title: "A tab for every session",
+    body: "The Orchestrator and each agent it starts get their own Terminal tab, grouped under the project.",
+  },
+  {
+    icon: Copy,
+    title: "Copy and Run in Terminal",
+    body: "Every code block in a reply has Copy and Run in Terminal. Ctrl+C and Ctrl+V work in the Terminal.",
+  },
+  {
+    icon: MousePointerClick,
+    title: "Mascots open the chat",
+    body: "Click an agent's mascot anywhere in the app to open its chat. Each agent's feed opens with its card.",
+  },
+  {
+    icon: Rocket,
+    title: "Updates on the launch screen",
+    body: "A new version shows as soon as Zveno starts, with what is new and an Update button.",
+  },
+  {
+    icon: Gauge,
+    title: "Fast on slow PCs",
+    body: "Far less work per frame, and a Reduce effects setting that turns itself on for slower computers.",
   },
 ];
 
 const FIXES = [
-  "Works with Codex CLI 0.167",
-  "Opus 5.5 shows its 1M context window",
-  "Codex next to Claude Code keeps both terminals intact",
-  "Denser glass; the window background stays",
-  "Plan MVP starts the Orchestrator on an MVP task",
-  "Computer use follows its switch in Settings",
-  "Preview says why a dev server did not start",
+  "Autopilot no longer locks a desktop PC",
+  "The Terminal keeps its text intact",
+  "Token counts leave out cached reads",
+  "The context bar starts at the left",
+  "Interview answers no longer jump to the top",
+  "Explain works without an API key",
+  "Board tasks stay within three lines",
 ];
 
 export function WhatsNew() {
@@ -58,10 +58,10 @@ export function WhatsNew() {
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="label">
           <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full bg-accent align-middle" />
-          New in 0.10.1
+          New in 0.10.3
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
-          Choose how each agent works. <span className="text-faint">And see what it does on your screen.</span>
+          Let your server do the night shift. <span className="text-faint">And keep every agent one click away.</span>
         </h2>
       </Reveal>
 
