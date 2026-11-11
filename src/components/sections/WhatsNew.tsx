@@ -3,7 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { Slide } from "../Slide";
 
-// What 0.10.3 adds, from the release notes (Zveno repo, apps/desktop/release-notes/0.10.3.md).
+// What 0.10.3 and 0.10.4 add, from the release notes (Zveno repo, apps/desktop/release-notes/0.10.3.md, 0.10.4.md).
 const FEATURES: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Server,
@@ -49,6 +49,7 @@ const FIXES = [
   "The context bar starts at the left",
   "Interview answers no longer jump to the top",
   "Explain works without an API key",
+  "Projects with .env.example run on your server",
   "Board tasks stay within three lines",
 ];
 
@@ -58,7 +59,7 @@ export function WhatsNew() {
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="label">
           <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full bg-accent align-middle" />
-          New in 0.10.3
+          New in 0.10.4
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
           Let your server do the night shift. <span className="text-faint">And keep every agent one click away.</span>

@@ -10,7 +10,7 @@ export const NAV = [
   { href: "#skills", label: "Skills" },
   { href: "#providers", label: "Providers" },
   { href: "#security", label: "Security" },
-  { href: "#new", label: "New in 0.10.3" },
+  { href: "#new", label: "New in 0.10.4" },
 ];
 
 export const QUOTES = [
