@@ -5,12 +5,12 @@ export const DOWNLOAD = {
 };
 
 export const NAV = [
-  { href: "#new", label: "New in 0.10.1" },
   { href: "#how", label: "How it works" },
   { href: "#tour", label: "Product" },
   { href: "#skills", label: "Skills" },
   { href: "#providers", label: "Providers" },
   { href: "#security", label: "Security" },
+  { href: "#new", label: "New in 0.10.1" },
 ];
 
 export const QUOTES = [
