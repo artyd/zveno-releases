@@ -66,7 +66,7 @@ const PHASES: { state: CallState; ms: number }[] = [
 ];
 
 // Every language the call speaks. Nine have samples (voice-samples.json), a female and a male voice each:
-// public/voice/<lang>-<gender>.mp3, each saying the same two lines in its language. Russian and Ukrainian last.
+// public/voice/<lang>-<gender>.mp3, each saying the same two lines in its language. Russian last.
 const LANGS: { code: string; name: string }[] = [
   { code: "en", name: "English" },
   { code: "de", name: "Deutsch" },
@@ -78,7 +78,6 @@ const LANGS: { code: string; name: string }[] = [
   { code: "ja", name: "日本語" },
   { code: "ko", name: "한국어" },
   { code: "ru", name: "Русский" },
-  { code: "uk", name: "Українська" },
 ];
 
 type Sample = { lang: string; gender: string; text: string; duration: number | null };
@@ -105,7 +104,7 @@ const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string }[]
     icon: Cpu,
     hue: "#af52de",
     title: "On your computer",
-    body: "whisper.cpp hears a phrase in about a second; Qwen3-TTS or Piper speaks. No audio or text leaves it.",
+    body: "whisper.cpp hears a phrase in about a second; Qwen3-TTS speaks. No audio or text leaves your computer.",
   },
   {
     icon: ShieldCheck,
@@ -522,7 +521,7 @@ export function VoiceCall() {
                 })}
               </div>
               <p className="mt-2 text-[12px] text-faint">
-                Also <span lang="ru">Русский</span> and <span lang="uk">Українська</span>: supported, no samples here.
+                Also <span lang="ru">Русский</span>: supported, no sample here.
               </p>
             </div>
           </Reveal>

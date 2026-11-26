@@ -81,7 +81,7 @@ export function WhatsNew() {
           <span className="relative min-w-0 flex-1">
             <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Speak &amp; Ship: a voice call with the Orchestrator</span>
             <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
-              Talk as on the phone, in any of 11 languages. Speech is heard and spoken on your computer. Windows first.
+              Talk as on the phone, in any of 10 languages. Speech is heard and spoken on your computer. Windows first.
             </span>
           </span>
           <span className="relative inline-flex shrink-0 items-center gap-1 text-[13.5px] font-medium">
