@@ -9,6 +9,7 @@ import { Providers } from "@/components/sections/Providers";
 import { Skills } from "@/components/sections/Skills";
 import { Security } from "@/components/sections/Security";
 import { WhatsNew } from "@/components/sections/WhatsNew";
+import { LiveScenes } from "@/components/sections/LiveScenes";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <Skills />
         <Providers />
         <Security />
+        <LiveScenes />
         <WhatsNew />
         <Download />
       </main>
