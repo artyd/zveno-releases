@@ -54,7 +54,7 @@ export function WhatsNew() {
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="label">
           <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full bg-accent align-middle" />
-          New in 0.10.5
+          New in 0.10.5 and 0.10.6
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
           Call the Orchestrator, and see what your agents spend and ask.{" "}
@@ -81,7 +81,7 @@ export function WhatsNew() {
           <span className="relative min-w-0 flex-1">
             <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Speak &amp; Ship: a voice call with the Orchestrator</span>
             <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
-              Talk as on the phone, in any of 10 languages. Speech is heard and spoken on your computer. Windows first.
+              Talk as on the phone, in any of 10 languages. Speech is heard and spoken on your computer, about twice as fast since 0.10.6. Windows first.
             </span>
           </span>
           <span className="relative inline-flex shrink-0 items-center gap-1 text-[13.5px] font-medium">
