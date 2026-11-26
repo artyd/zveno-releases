@@ -640,3 +640,8 @@ html {
     background: var(--line-strong) padding-box;
   }
 }
+
+/* Live scenes carousel (New in 0.10.5): cross-fade between two scenes and the active chip's timer. */
+@keyframes scene-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scene-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes scene-progress { from { width: 0%; } to { width: 100%; } }
