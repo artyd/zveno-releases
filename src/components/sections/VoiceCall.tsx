@@ -65,8 +65,8 @@ const PHASES: { state: CallState; ms: number }[] = [
   { state: "speaking", ms: 5200 },
 ];
 
-// Every language the call speaks. Samples exist for some of them (voice-samples.json): `<lang>-<gender>.mp3` in
-// public/voice/, each saying the same two lines in its language.
+// Every language the call speaks. Nine have samples (voice-samples.json), a female and a male voice each:
+// public/voice/<lang>-<gender>.mp3, each saying the same two lines in its language. Russian and Ukrainian last.
 const LANGS: { code: string; name: string }[] = [
   { code: "en", name: "English" },
   { code: "de", name: "Deutsch" },
@@ -83,7 +83,10 @@ const LANGS: { code: string; name: string }[] = [
 
 type Sample = { lang: string; gender: string; text: string; duration: number | null };
 const SAMPLES = samplesJson as Sample[];
-const sampleOf = (lang: string) => SAMPLES.find((x) => x.lang === lang);
+/** A sample's id: "<lang>-<gender>", as its file is named. */
+const idOf = (x: Pick<Sample, "lang" | "gender">) => `${x.lang}-${x.gender}`;
+const sampleOf = (id: string) => SAMPLES.find((x) => idOf(x) === id);
+const GENDERS = ["female", "male"] as const;
 
 const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string }[] = [
   {
@@ -281,19 +284,19 @@ export function VoiceCall() {
     return () => clearInterval(timer);
   }, [running, clip, reduced, draw]);
 
-  const play = async (lang: string) => {
-    if (clip === lang) {
+  const play = async (id: string) => {
+    if (clip === id) {
       stopClip();
       return;
     }
     stopClip();
-    const c = sampleOf(lang);
+    const c = sampleOf(id);
     if (!c) return;
     try {
       const AC = window.AudioContext;
       ctx.current ??= new AC();
       if (ctx.current.state === "suspended") await ctx.current.resume();
-      const el = new Audio(`/voice/${c.lang}-${c.gender}.mp3`);
+      const el = new Audio(`/voice/${idOf(c)}.mp3`);
       const source = ctx.current.createMediaElementSource(el);
       const analyser = ctx.current.createAnalyser();
       analyser.fftSize = 1024;
@@ -310,7 +313,7 @@ export function VoiceCall() {
           setPhase(0);
         }
       });
-      setClip(lang);
+      setClip(id);
       await el.play();
     } catch {
       stopClip();
@@ -327,12 +330,12 @@ export function VoiceCall() {
   const replyLine = playing ? playing.text || null : listening ? (prev?.reply ?? null) : state === "speaking" ? t.reply : null;
 
   return (
-    <Slide id="voice" backdrop={<Glow />}>
+    <Slide id="speak" backdrop={<Glow />}>
       <div ref={root}>
         <Reveal className="mx-auto max-w-4xl text-center">
           <p className="label">
             <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full align-middle" style={{ background: "#30d158" }} />
-            New in 0.10.5 · Voice call · Windows first
+            New in 0.10.5 · Speak &amp; Ship · Windows first
           </p>
           <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
             Call the Orchestrator and talk it through.{" "}
@@ -456,7 +459,7 @@ export function VoiceCall() {
                     </span>
                     {title}
                   </h3>
-                  <p className="relative mt-2 text-[13px] leading-relaxed text-muted">{body}</p>
+                  <p className="relative mt-2 text-[13px] leading-relaxed text-muted deck:mt-[clamp(4px,1vh,8px)] deck:leading-[1.5]">{body}</p>
                 </div>
               ))}
             </div>
@@ -465,60 +468,62 @@ export function VoiceCall() {
             <div className="glass-panel rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
               <div className="flex items-end gap-3">
                 <span
-                  className="bg-clip-text text-[52px] leading-[0.9] font-semibold tracking-[-0.04em] text-transparent deck:text-[clamp(40px,6.4vh,60px)]"
+                  className="bg-clip-text text-[52px] leading-[0.9] font-semibold tracking-[-0.04em] text-transparent deck:text-[clamp(34px,5.6vh,60px)]"
                   style={{ backgroundImage: "linear-gradient(120deg, #30d158, #0a84ff 50%, #af52de)" }}
                 >
                   {LANGS.length}
                 </span>
                 <span className="pb-0.5">
                   <span className="block text-[17px] leading-tight font-semibold tracking-[-0.01em]">languages</span>
-                  <span className="block text-[12.5px] leading-snug text-muted">It answers in the one you speak. Press one to hear it.</span>
+                  <span className="block text-[12.5px] leading-snug text-muted">It answers in the one you speak. Press a voice to hear it.</span>
                 </span>
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-1.5 min-[480px]:grid-cols-3 sm:grid-cols-4" role="group" aria-label="Languages the voice call speaks">
-                {LANGS.map(({ code, name }, i) => {
-                  const hue = (150 + i * 33) % 360;
-                  const sample = sampleOf(code);
-                  const on = clip === code;
-                  const body = (
-                    <>
+              <div className="mt-3 grid grid-cols-2 gap-1.5 sm:grid-cols-3" role="group" aria-label="Hear the voice in each language">
+                {LANGS.filter(({ code }) => SAMPLES.some((x) => x.lang === code)).map(({ code, name }, i) => {
+                  const hue = (150 + i * 40) % 360;
+                  return (
+                    <div
+                      key={code}
+                      className="flex min-w-0 flex-col gap-1 rounded-[10px] px-2.5 py-1.5 text-[12.5px] deck:gap-0.5 deck:py-1"
+                      style={{ background: `oklch(0.7 0.16 ${hue} / 0.14)` }}
+                    >
                       <span className="flex min-w-0 items-center gap-1.5">
-                        <span className="font-mono text-[10.5px] font-semibold uppercase" style={{ color: on ? "#fff" : `oklch(var(--code-l) 0.17 ${hue})` }}>
+                        <span className="font-mono text-[10.5px] font-semibold uppercase" style={{ color: `oklch(var(--code-l) 0.17 ${hue})` }}>
                           {code}
                         </span>
                         <span lang={code} className="truncate">
                           {name}
                         </span>
                       </span>
-                      {sample && (
-                        <span className={`flex items-center gap-1 text-[11px] ${on ? "text-white/85" : "text-muted"}`}>
-                          {on ? <Pause size={11} /> : <Play size={11} />}
-                          {sample.gender}
-                        </span>
-                      )}
-                    </>
-                  );
-                  const cls = "flex min-h-[40px] min-w-0 flex-col justify-center gap-0.5 rounded-[10px] px-2.5 py-1 text-left text-[12.5px]";
-                  return sample ? (
-                    <button
-                      key={code}
-                      type="button"
-                      onClick={() => void play(code)}
-                      aria-pressed={on}
-                      aria-label={`Hear the ${name} ${sample.gender} voice`}
-                      className={`${cls} cursor-pointer transition-[background,box-shadow] ${on ? "text-white" : "hover:shadow-[inset_0_0_0_1px_var(--line-strong)]"}`}
-                      style={{ background: on ? "linear-gradient(120deg, #0a84ff, #af52de)" : `oklch(0.7 0.16 ${hue} / 0.14)` }}
-                    >
-                      {body}
-                    </button>
-                  ) : (
-                    <span key={code} className={cls} style={{ background: `oklch(0.7 0.16 ${hue} / 0.14)` }}>
-                      {body}
-                    </span>
+                      <span className="flex gap-1">
+                        {GENDERS.filter((g) => sampleOf(`${code}-${g}`)).map((g) => {
+                          const id = `${code}-${g}`;
+                          const on = clip === id;
+                          return (
+                            <button
+                              key={g}
+                              type="button"
+                              onClick={() => void play(id)}
+                              aria-pressed={on}
+                              aria-label={`Hear the ${name} ${g} voice`}
+                              className={`inline-flex h-6 cursor-pointer deck:h-[22px] items-center gap-1 rounded-full px-2 text-[11px] font-medium transition-colors ${
+                                on ? "text-white" : "bg-surface text-muted hover:text-text"
+                              }`}
+                              style={on ? { background: "linear-gradient(120deg, #0a84ff, #af52de)" } : undefined}
+                            >
+                              {on ? <Pause size={10} /> : <Play size={10} />}
+                              {g}
+                            </button>
+                          );
+                        })}
+                      </span>
+                    </div>
                   );
                 })}
               </div>
-              <p className="mt-2 text-[12px] text-faint">Russian and Ukrainian are supported too.</p>
+              <p className="mt-2 text-[12px] text-faint">
+                Also <span lang="ru">Русский</span> and <span lang="uk">Українська</span>: supported, no samples here.
+              </p>
             </div>
           </Reveal>
         </div>

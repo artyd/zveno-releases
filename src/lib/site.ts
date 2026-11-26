@@ -11,7 +11,7 @@ export const NAV = [
   { href: "#providers", label: "Providers" },
   { href: "#security", label: "Security" },
   { href: "#scenes", label: "New in 0.10.5" },
-  { href: "#voice", label: "Voice call" },
+  { href: "#speak", label: "Speak & Ship" },
 ];
 
 export const QUOTES = [

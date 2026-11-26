@@ -64,7 +64,7 @@ export function WhatsNew() {
 
       <Reveal stagger={60} className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 deck:mt-[clamp(14px,3vh,32px)] deck:gap-[clamp(8px,1.4vh,14px)]">
         <a
-          href="#voice"
+          href="#speak"
           className="glass-panel group relative flex flex-col gap-3 overflow-hidden rounded-[16px] p-4 transition-colors hover:bg-hover sm:col-span-2 sm:flex-row sm:items-center lg:col-span-4 deck:p-[clamp(12px,2vh,18px)]"
         >
           <span
@@ -79,13 +79,13 @@ export function WhatsNew() {
             <AudioLines size={18} />
           </span>
           <span className="relative min-w-0 flex-1">
-            <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Voice call with the Orchestrator</span>
+            <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Speak &amp; Ship: a voice call with the Orchestrator</span>
             <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
               Talk as on the phone, in any of 11 languages. Speech is heard and spoken on your computer. Windows first.
             </span>
           </span>
           <span className="relative inline-flex shrink-0 items-center gap-1 text-[13.5px] font-medium">
-            See the call <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+            See it <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
           </span>
         </a>
         {FEATURES.map(({ icon: Icon, title, body }) => (

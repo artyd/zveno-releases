@@ -1,11 +1,110 @@
 [
-  { "lang": "en", "gender": "female", "text": "", "duration": null },
-  { "lang": "de", "gender": "male", "text": "", "duration": null },
-  { "lang": "es", "gender": "female", "text": "", "duration": null },
-  { "lang": "fr", "gender": "male", "text": "", "duration": null },
-  { "lang": "it", "gender": "female", "text": "", "duration": null },
-  { "lang": "pt", "gender": "male", "text": "", "duration": null },
-  { "lang": "zh", "gender": "female", "text": "", "duration": null },
-  { "lang": "ja", "gender": "female", "text": "", "duration": null },
-  { "lang": "ko", "gender": "male", "text": "", "duration": null }
+  {
+    "lang": "en",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "en",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "de",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "de",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "es",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "es",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "fr",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "fr",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "it",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "it",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "pt",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "pt",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "zh",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "zh",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "ja",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "ja",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "ko",
+    "gender": "female",
+    "text": "",
+    "duration": null
+  },
+  {
+    "lang": "ko",
+    "gender": "male",
+    "text": "",
+    "duration": null
+  }
 ]
