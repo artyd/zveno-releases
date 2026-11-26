@@ -56,7 +56,7 @@ export function WhatsNew() {
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="label">
           <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full bg-accent align-middle" />
-          New in 0.10.5 – 0.10.7
+          New in 0.10.5 – 0.10.8
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
           Call the Orchestrator, and see what your agents spend and ask.{" "}
