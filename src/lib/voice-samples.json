@@ -2,109 +2,109 @@
   {
     "lang": "en",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "Hi, I'm Zveno. Two agents are on it: one builds the sign-in screen, the other writes the tests.",
+    "duration": 6.96
   },
   {
     "lang": "en",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "Hi, I'm Zveno. Two agents are on it: one builds the sign-in screen, the other writes the tests.",
+    "duration": 6.88
   },
   {
     "lang": "de",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "Hallo, ich bin Zveno. Zwei Agenten sind dran: Einer baut den Anmeldebildschirm, der andere schreibt die Tests.",
+    "duration": 7.12
   },
   {
     "lang": "de",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "Hallo, ich bin Zveno. Zwei Agenten sind dran: Einer baut den Anmeldebildschirm, der andere schreibt die Tests.",
+    "duration": 6.96
   },
   {
     "lang": "es",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "Hola, soy Zveno. Dos agentes están en ello: uno hace la pantalla de inicio de sesión y el otro escribe las pruebas.",
+    "duration": 8.24
   },
   {
     "lang": "es",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "Hola, soy Zveno. Dos agentes están en ello: uno hace la pantalla de inicio de sesión y el otro escribe las pruebas.",
+    "duration": 7.52
   },
   {
     "lang": "fr",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "Salut, je suis Zveno. Deux agents s'en occupent : l'un crée l'écran de connexion, l'autre écrit les tests.",
+    "duration": 6.24
   },
   {
     "lang": "fr",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "Salut, je suis Zveno. Deux agents s'en occupent : l'un crée l'écran de connexion, l'autre écrit les tests.",
+    "duration": 6.16
   },
   {
     "lang": "it",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "Ciao, sono Zveno. Due agenti ci stanno lavorando: uno crea la schermata di accesso, l'altro scrive i test.",
+    "duration": 8.24
   },
   {
     "lang": "it",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "Ciao, sono Zveno. Due agenti ci stanno lavorando: uno crea la schermata di accesso, l'altro scrive i test.",
+    "duration": 8.32
   },
   {
     "lang": "pt",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "Olá, eu sou o Zveno. Dois agentes estão cuidando disso: um cria a tela de login e o outro escreve os testes.",
+    "duration": 7.44
   },
   {
     "lang": "pt",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "Olá, eu sou o Zveno. Dois agentes estão cuidando disso: um cria a tela de login e o outro escreve os testes.",
+    "duration": 7.28
   },
   {
     "lang": "zh",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "你好，我是 Zveno。两个智能体正在处理：一个做登录界面，另一个写测试。",
+    "duration": 6.4
   },
   {
     "lang": "zh",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "你好，我是 Zveno。两个智能体正在处理：一个做登录界面，另一个写测试。",
+    "duration": 7.12
   },
   {
     "lang": "ja",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "こんにちは、Zvenoです。エージェント二人が担当しています。一人はログイン画面を作り、もう一人はテストを書いています。",
+    "duration": 8.32
   },
   {
     "lang": "ja",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "こんにちは、Zvenoです。エージェント二人が担当しています。一人はログイン画面を作り、もう一人はテストを書いています。",
+    "duration": 8.8
   },
   {
     "lang": "ko",
     "gender": "female",
-    "text": "",
-    "duration": null
+    "text": "안녕하세요, 저는 Zveno예요. 에이전트 두 명이 맡고 있어요. 하나는 로그인 화면을 만들고, 다른 하나는 테스트를 작성해요.",
+    "duration": 11.52
   },
   {
     "lang": "ko",
     "gender": "male",
-    "text": "",
-    "duration": null
+    "text": "안녕하세요, 저는 Zveno예요. 에이전트 두 명이 맡고 있어요. 하나는 로그인 화면을 만들고, 다른 하나는 테스트를 작성해요.",
+    "duration": 10.08
   }
 ]
