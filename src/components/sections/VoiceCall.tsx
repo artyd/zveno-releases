@@ -413,7 +413,7 @@ export function VoiceCall() {
               </div>
             </div>
             {/* What the call leaves behind: the whole talk as text in the Orchestrator's Feed. */}
-            <div className="glass-panel rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
+            <div className="glass-panel flex-1 rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
               <div className="flex items-center justify-between gap-3">
                 <p className="label !text-[10.5px]">Kept as text in the Feed</p>
                 <span className="text-[11.5px] text-faint">Code and paths stay in text</span>
