@@ -10,7 +10,7 @@ import { Skills } from "@/components/sections/Skills";
 import { Security } from "@/components/sections/Security";
 import { WhatsNew } from "@/components/sections/WhatsNew";
 import { LiveScenes } from "@/components/sections/LiveScenes";
-import { Juno } from "@/components/sections/Juno";
+import { VoiceCall } from "@/components/sections/VoiceCall";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
         <Providers />
         <Security />
         <LiveScenes />
-        <Juno />
+        <VoiceCall />
         <WhatsNew />
         <Download />
       </main>

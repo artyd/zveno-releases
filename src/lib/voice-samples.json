@@ -1,0 +1,11 @@
+[
+  { "lang": "en", "gender": "female", "text": "", "duration": null },
+  { "lang": "de", "gender": "male", "text": "", "duration": null },
+  { "lang": "es", "gender": "female", "text": "", "duration": null },
+  { "lang": "fr", "gender": "male", "text": "", "duration": null },
+  { "lang": "it", "gender": "female", "text": "", "duration": null },
+  { "lang": "pt", "gender": "male", "text": "", "duration": null },
+  { "lang": "zh", "gender": "female", "text": "", "duration": null },
+  { "lang": "ja", "gender": "female", "text": "", "duration": null },
+  { "lang": "ko", "gender": "male", "text": "", "duration": null }
+]

@@ -3,14 +3,16 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { Cpu, Languages, Pause, PhoneCall, Play, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import samplesJson from "@/lib/voice-samples.json";
 import { Bug, ORCH_LOOK } from "../Bug";
 import { Reveal } from "../Reveal";
 import { Slide } from "../Slide";
 
-// Juno, the voice call with the Orchestrator (Zveno 0.10.5; Zveno repo, .scratch/voice-assistant/spec.md and
-// ADR 0039). The call screen and its pill are rebuilt from packages/ui/src/call/ (CallScreen, CallParts,
-// view.ts): the same chip, Bug, waveform maths, glyphs and colours. The call here is a scripted demo; the
-// "Hear Juno" clips are real Qwen3-TTS output of Juno's voices, and play through the same waveform.
+// The voice call with the Orchestrator (Zveno 0.10.5; Zveno repo, .scratch/voice-assistant/spec.md and ADR 0039).
+// The User names the assistant (the app's default name is its own); on the site it is called Zveno. The call screen
+// and its pill are rebuilt from packages/ui/src/call/ (CallScreen, CallParts, view.ts): the same chip, Bug, waveform
+// maths, glyphs and colours. The call here is a scripted demo; the language samples are real Qwen3-TTS output
+// (public/voice/, listed in src/lib/voice-samples.json) and play through the same waveform.
 
 type CallState = "listening" | "thinking" | "speaking";
 
@@ -48,11 +50,14 @@ function waveHeights(state: CallState, levels: readonly number[], t: number, max
 /** "02:14" */
 const callTime = (s: number) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
-// The demo's turns. The reply is what Juno says; code, paths and long lists stay in the Feed.
+/** What the assistant is called in every example here. */
+const NAME = "Zveno";
+
+// The demo's turns. The reply is what the assistant says; code, paths and long lists stay in the Feed.
 const TURNS = [
-  { you: "Add a sign-in screen, with tests.", juno: "Got it. I'm starting two agents: one builds the sign-in screen, the other writes the tests." },
-  { you: "How is it going?", juno: "The sign-in screen is done and the tests pass. Details are in the Feed." },
-  { you: "Ship it.", juno: "The release is ready. It is waiting for you on screen." },
+  { you: "Add a sign-in screen, with tests.", reply: "Two agents are on it: one builds the sign-in screen, the other writes the tests." },
+  { you: "How is it going?", reply: "The sign-in screen is done and the tests pass. Details are in the Feed." },
+  { you: "Ship it.", reply: "The release is ready. It is waiting for you on screen." },
 ];
 const PHASES: { state: CallState; ms: number }[] = [
   { state: "listening", ms: 3600 },
@@ -60,38 +65,38 @@ const PHASES: { state: CallState; ms: number }[] = [
   { state: "speaking", ms: 5200 },
 ];
 
-// Juno's Qwen3-TTS voices, as the app ships them (Zveno repo, .scratch/voice-assistant/samples/juno-native-xvec-*).
-const CLIPS = [
-  { id: "en-female", lang: "EN", label: "English · female", src: "/juno/juno-en-female.mp3", text: "Hi, I'm Juno. What are we building today?" },
-  { id: "ru-female", lang: "RU", label: "Russian · female", src: "/juno/juno-ru-female.mp3", text: "Привет! Я Джуно, на связи. Что делаем сегодня?" },
-  { id: "ru-male", lang: "RU", label: "Russian · male", src: "/juno/juno-ru-male.mp3", text: "Привет! Я Джуно, на связи. Что делаем сегодня?" },
-] as const;
+// Every language the call speaks. Samples exist for some of them (voice-samples.json): `<lang>-<gender>.mp3` in
+// public/voice/, each saying the same two lines in its language.
+const LANGS: { code: string; name: string }[] = [
+  { code: "en", name: "English" },
+  { code: "de", name: "Deutsch" },
+  { code: "es", name: "Español" },
+  { code: "fr", name: "Français" },
+  { code: "it", name: "Italiano" },
+  { code: "pt", name: "Português" },
+  { code: "zh", name: "中文" },
+  { code: "ja", name: "日本語" },
+  { code: "ko", name: "한국어" },
+  { code: "ru", name: "Русский" },
+  { code: "uk", name: "Українська" },
+];
 
-const LANGS = [
-  ["RU", "Русский"],
-  ["EN", "English"],
-  ["DE", "Deutsch"],
-  ["ES", "Español"],
-  ["FR", "Français"],
-  ["IT", "Italiano"],
-  ["PT", "Português"],
-  ["ZH", "中文"],
-  ["JA", "日本語"],
-  ["KO", "한국어"],
-] as const;
+type Sample = { lang: string; gender: string; text: string; duration: number | null };
+const SAMPLES = samplesJson as Sample[];
+const sampleOf = (lang: string) => SAMPLES.find((x) => x.lang === lang);
 
 const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string }[] = [
   {
     icon: PhoneCall,
     hue: "#30d158",
     title: "Talk like a call",
-    body: "No push-to-talk: call from the Orchestrator's row and just talk. Juno hears when you finish and stops when you cut in.",
+    body: "No push-to-talk: call from the Orchestrator's row and just talk. It hears when you finish and stops when you cut in.",
   },
   {
     icon: Languages,
     hue: "#0a84ff",
     title: "Your language",
-    body: "It answers in the language you speak, in a female or male voice. Rename it if you like.",
+    body: "It answers in the language you speak, in a female or male voice. Name it whatever you like.",
   },
   {
     icon: Cpu,
@@ -125,11 +130,11 @@ function Glyph({ name }: { name: keyof typeof GLYPH }) {
 
 function CallBug({ size }: { size: string }) {
   return (
-    <div className="juno-bug" style={{ width: size, height: size }}>
-      <span className="juno-ring" />
-      <span className="juno-ring" />
-      <span className="juno-ring" />
-      <div className="juno-art">
+    <div className="vcall-bug" style={{ width: size, height: size }}>
+      <span className="vcall-ring" />
+      <span className="vcall-ring" />
+      <span className="vcall-ring" />
+      <div className="vcall-art">
         <Bug look={ORCH_LOOK} mood="still" size={150} />
       </div>
     </div>
@@ -138,7 +143,7 @@ function CallBug({ size }: { size: string }) {
 
 function Wave({ state, height, setRef }: { state: CallState; height: number; setRef: (el: HTMLDivElement | null) => void }) {
   return (
-    <div ref={setRef} className="juno-wave" style={{ height }} aria-hidden="true">
+    <div ref={setRef} className="vcall-wave" style={{ height }} aria-hidden="true">
       {Array.from({ length: BARS }, (_, i) => (
         <i key={i} style={{ background: WAVE[state] }} />
       ))}
@@ -149,7 +154,7 @@ function Wave({ state, height, setRef }: { state: CallState; height: number; set
 // A still waveform for reduced motion: a speaking shape that does not move.
 const STILL = Array.from({ length: BARS }, (_, i) => 0.35 + 0.6 * Math.abs(Math.sin(i * 0.9 + 0.4)));
 
-export function Juno() {
+export function VoiceCall() {
   const root = useRef<HTMLDivElement>(null);
   const waves = useRef<(HTMLDivElement | null)[]>([null, null]);
   const [phase, setPhase] = useState(0);
@@ -259,7 +264,7 @@ export function Juno() {
         st = PHASES[p]!.state;
         const left = PHASES[p]!.ms - s.phaseMs;
         if (st === "listening") {
-          // You talk, then a short quiet: that quiet is how Juno knows you have finished.
+          // You talk, then a short quiet: that quiet is how it knows you have finished.
           const talk = s.phaseMs > 500 && left > 900;
           level = talk ? speechLevel(s.t) : 0.03 * Math.random();
         } else if (st === "speaking") {
@@ -276,18 +281,19 @@ export function Juno() {
     return () => clearInterval(timer);
   }, [running, clip, reduced, draw]);
 
-  const play = async (id: string) => {
-    if (clip === id) {
+  const play = async (lang: string) => {
+    if (clip === lang) {
       stopClip();
       return;
     }
     stopClip();
-    const c = CLIPS.find((x) => x.id === id)!;
+    const c = sampleOf(lang);
+    if (!c) return;
     try {
       const AC = window.AudioContext;
       ctx.current ??= new AC();
       if (ctx.current.state === "suspended") await ctx.current.resume();
-      const el = new Audio(c.src);
+      const el = new Audio(`/voice/${c.lang}-${c.gender}.mp3`);
       const source = ctx.current.createMediaElementSource(el);
       const analyser = ctx.current.createAnalyser();
       analyser.fftSize = 1024;
@@ -298,13 +304,13 @@ export function Juno() {
         if (audio.current?.el === el) {
           audio.current = null;
           setClip(null);
-          // Back to the call: Juno listens again.
+          // Back to the call: it listens again.
           sim.current.phaseMs = 0;
           phaseRef.current = 0;
           setPhase(0);
         }
       });
-      setClip(id);
+      setClip(lang);
       await el.play();
     } catch {
       stopClip();
@@ -312,22 +318,21 @@ export function Juno() {
   };
 
   const t = TURNS[turn]!;
-  const playing = CLIPS.find((c) => c.id === clip);
-  // While Juno listens, the Feed still shows the last exchange, faded.
+  const playing = clip ? sampleOf(clip) : undefined;
+  // While it listens, the Feed still shows the last exchange, faded.
   const prev = turn > 0 || looped ? TURNS[(turn + TURNS.length - 1) % TURNS.length]! : null;
   const listening = !playing && state === "listening";
   const shown = listening ? prev : t;
   const youLine = playing ? null : listening ? (prev?.you ?? null) : t.you;
-  const junoLine = playing ? playing.text : listening ? (prev?.juno ?? null) : state === "speaking" ? t.juno : null;
-  const activeLang = playing?.lang ?? "EN";
+  const replyLine = playing ? playing.text || null : listening ? (prev?.reply ?? null) : state === "speaking" ? t.reply : null;
 
   return (
-    <Slide id="juno" backdrop={<Glow />}>
+    <Slide id="voice" backdrop={<Glow />}>
       <div ref={root}>
         <Reveal className="mx-auto max-w-4xl text-center">
           <p className="label">
             <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full align-middle" style={{ background: "#30d158" }} />
-            New in 0.10.5 · Juno · Windows first
+            New in 0.10.5 · Voice call · Windows first
           </p>
           <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
             Call the Orchestrator and talk it through.{" "}
@@ -337,7 +342,7 @@ export function Juno() {
           </h2>
         </Reveal>
 
-        <div className="juno mt-6 grid items-start gap-4 lg:grid-cols-[1.08fr_1fr] deck:mt-[clamp(12px,2.6vh,28px)] deck:gap-[clamp(10px,1.8vh,18px)]">
+        <div className="vcall mt-6 grid items-start gap-4 lg:grid-cols-[1.08fr_1fr] deck:mt-[clamp(12px,2.6vh,28px)] deck:gap-[clamp(10px,1.8vh,18px)]">
           {/* The call, as the app shows it: full screen over a blurred Zveno, then minimised to its pill. */}
           <Reveal className="flex flex-col gap-3 deck:gap-[clamp(8px,1.4vh,12px)]">
             <div
@@ -345,9 +350,9 @@ export function Juno() {
               className="relative overflow-hidden rounded-[22px] border border-[var(--call-line)] shadow-[var(--frame-shadow)]"
               style={{ background: "var(--call-bg)" }}
               role="img"
-              aria-label={`Juno's call screen: ${LABEL[state]}, ${callTime(seconds)}`}
+              aria-label={`The call screen: ${NAME}, ${LABEL[state]}, ${callTime(seconds)}`}
             >
-              <div className="juno-aura pointer-events-none absolute inset-0" style={{ background: AURA[state] }} />
+              <div className="vcall-aura pointer-events-none absolute inset-0" style={{ background: AURA[state] }} />
               <div className="relative grid justify-items-center gap-3 px-4 py-6 deck:gap-[clamp(6px,1.1vh,12px)] deck:py-[clamp(12px,2.4vh,34px)]">
                 <span className="inline-flex items-center gap-[7px] rounded-[6px] bg-[var(--call-chip)] px-[9px] py-1 font-mono text-[11px] font-medium whitespace-nowrap text-[var(--call-text)]">
                   <span className="size-[7px] rounded-full transition-colors duration-300" style={{ background: DOT[state] }} />
@@ -356,18 +361,18 @@ export function Juno() {
                 <div className="my-2 deck:my-[clamp(4px,1vh,12px)]">
                   <CallBug size="clamp(96px, 14vh, 150px)" />
                 </div>
-                <div className="text-[26px] font-[650] tracking-[-0.02em] text-[var(--call-text)]">Juno</div>
+                <div className="text-[26px] font-[650] tracking-[-0.02em] text-[var(--call-text)]">{NAME}</div>
                 <Wave state={state} height={34} setRef={(el) => {
                     waves.current[0] = el;
                   }} />
                 <div className="mt-1 flex justify-center gap-2.5" aria-hidden="true">
-                  <span className="juno-ctl">
+                  <span className="vcall-ctl">
                     <Glyph name="mic" />
                   </span>
-                  <span className="juno-ctl">
+                  <span className="vcall-ctl">
                     <Glyph name="minimise" />
                   </span>
-                  <span className="juno-ctl is-end">
+                  <span className="vcall-ctl is-end">
                     <Glyph name="end" />
                   </span>
                 </div>
@@ -384,7 +389,7 @@ export function Juno() {
               <CallBug size="42px" />
               <div className="grid min-w-0 flex-1 gap-px">
                 <span className="truncate text-[12.5px] font-semibold">
-                  Juno <span className="font-medium text-[var(--call-muted)]">· {LABEL[state]}</span>
+                  {NAME} <span className="font-medium text-[var(--call-muted)]">· {LABEL[state]}</span>
                 </span>
                 <span className="font-mono text-[11.5px] font-medium text-[var(--call-muted)]">{callTime(seconds)}</span>
               </div>
@@ -394,13 +399,13 @@ export function Juno() {
                   }} />
               </div>
               <div className="flex gap-1.5">
-                <span className="juno-ctl !size-[34px]">
+                <span className="vcall-ctl !size-[34px]">
                   <Glyph name="mic" />
                 </span>
-                <span className="juno-ctl !size-[34px]">
+                <span className="vcall-ctl !size-[34px]">
                   <Glyph name="expand" />
                 </span>
-                <span className="juno-ctl is-end !h-[34px] !w-[44px]">
+                <span className="vcall-ctl is-end !h-[34px] !w-[44px]">
                   <Glyph name="end" />
                 </span>
               </div>
@@ -416,20 +421,22 @@ export function Juno() {
                 style={{ opacity: listening ? 0.5 : 1 }}
               >
                 {youLine && (
-                  <p key={`y-${shown === t ? turn : "prev"}`} className="juno-line flex gap-2">
+                  <p key={`y-${shown === t ? turn : "prev"}`} className="vcall-line flex gap-2">
                     <span className="w-10 shrink-0 font-mono text-[11px] leading-[1.6] text-faint uppercase">You</span>
                     <span>{youLine}</span>
                   </p>
                 )}
-                {junoLine && (
-                  <p key={`j-${clip ?? (shown === t ? turn : "prev")}`} className="juno-line flex gap-2">
+                {replyLine && (
+                  <p key={`r-${clip ?? (shown === t ? turn : "prev")}`} className="vcall-line flex gap-2">
                     <span className="w-10 shrink-0 font-mono text-[11px] leading-[1.6] uppercase" style={{ color: "#af52de" }}>
-                      Juno
+                      {NAME}
                     </span>
-                    <span className="text-muted">{junoLine}</span>
+                    <span className="text-muted" lang={playing?.lang}>
+                      {replyLine}
+                    </span>
                   </p>
                 )}
-                {!youLine && !junoLine && <p className="juno-line text-[13px] text-faint">Listening…</p>}
+                {!youLine && !replyLine && <p className="vcall-line text-[13px] text-faint">Listening…</p>}
               </div>
             </div>
           </Reveal>
@@ -443,64 +450,75 @@ export function Juno() {
                     className="pointer-events-none absolute -top-10 -right-10 size-28 rounded-full opacity-40 blur-2xl"
                     style={{ background: hue }}
                   />
-                  <span className="relative flex size-9 items-center justify-center rounded-[10px] text-white" style={{ background: hue, boxShadow: `0 6px 18px -6px ${hue}` }}>
-                    <Icon size={18} />
-                  </span>
-                  <h3 className="relative mt-2.5 text-[15px] leading-snug font-semibold tracking-[-0.01em]">{title}</h3>
-                  <p className="relative mt-1 text-[13px] leading-relaxed text-muted">{body}</p>
+                  <h3 className="relative flex items-center gap-2.5 text-[15px] leading-snug font-semibold tracking-[-0.01em]">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-[9px] text-white" style={{ background: hue, boxShadow: `0 6px 18px -6px ${hue}` }}>
+                      <Icon size={17} />
+                    </span>
+                    {title}
+                  </h3>
+                  <p className="relative mt-2 text-[13px] leading-relaxed text-muted">{body}</p>
                 </div>
               ))}
             </div>
 
+            {/* The languages: press one to hear the call's voice in it. */}
             <div className="glass-panel rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                <p className="label !text-[10.5px]">Hear Juno</p>
-                <span className="text-[11.5px] text-faint">Juno&apos;s Qwen3-TTS voices</span>
+              <div className="flex items-end gap-3">
+                <span
+                  className="bg-clip-text text-[52px] leading-[0.9] font-semibold tracking-[-0.04em] text-transparent deck:text-[clamp(40px,6.4vh,60px)]"
+                  style={{ backgroundImage: "linear-gradient(120deg, #30d158, #0a84ff 50%, #af52de)" }}
+                >
+                  {LANGS.length}
+                </span>
+                <span className="pb-0.5">
+                  <span className="block text-[17px] leading-tight font-semibold tracking-[-0.01em]">languages</span>
+                  <span className="block text-[12.5px] leading-snug text-muted">It answers in the one you speak. Press one to hear it.</span>
+                </span>
               </div>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {CLIPS.map((c) => {
-                  const on = clip === c.id;
-                  return (
-                    <button
-                      key={c.id}
-                      type="button"
-                      onClick={() => void play(c.id)}
-                      aria-pressed={on}
-                      className={`inline-flex min-h-9 cursor-pointer items-center gap-2 rounded-full border px-3 text-[13px] font-medium transition-colors ${
-                        on ? "border-transparent text-white" : "border-line-strong bg-surface hover:bg-sel"
-                      }`}
-                      style={on ? { background: "linear-gradient(90deg, #0a84ff, #af52de)" } : undefined}
-                    >
-                      {on ? <Pause size={14} /> : <Play size={14} />}
-                      {c.label}
-                    </button>
-                  );
-                })}
-              </div>
-              <p className="mt-3 text-[12px] text-faint">Ten languages. Juno answers in the one you speak.</p>
-              <div className="mt-1.5 flex flex-wrap gap-1.5" aria-label="Languages Juno speaks">
-                {LANGS.map(([code, name], i) => {
-                  const hueDeg = (150 + i * 36) % 360;
-                  const on = code === activeLang;
-                  return (
-                    <span
-                      key={code}
-                      className="inline-flex items-center gap-1.5 rounded-[8px] px-2 py-[3px] text-[12px] transition-shadow"
-                      style={
-                        {
-                          background: `oklch(0.7 0.16 ${hueDeg} / ${on ? 0.28 : 0.13})`,
-                          boxShadow: on ? `inset 0 0 0 1px oklch(0.7 0.16 ${hueDeg} / 0.7)` : undefined,
-                        } as CSSProperties
-                      }
-                    >
-                      <span className="font-mono text-[10.5px] font-semibold" style={{ color: `oklch(0.6 0.17 ${hueDeg})` }}>
-                        {code}
+              <div className="mt-3 grid grid-cols-2 gap-1.5 min-[480px]:grid-cols-3 sm:grid-cols-4" role="group" aria-label="Languages the voice call speaks">
+                {LANGS.map(({ code, name }, i) => {
+                  const hue = (150 + i * 33) % 360;
+                  const sample = sampleOf(code);
+                  const on = clip === code;
+                  const body = (
+                    <>
+                      <span className="flex min-w-0 items-center gap-1.5">
+                        <span className="font-mono text-[10.5px] font-semibold uppercase" style={{ color: on ? "#fff" : `oklch(var(--code-l) 0.17 ${hue})` }}>
+                          {code}
+                        </span>
+                        <span lang={code} className="truncate">
+                          {name}
+                        </span>
                       </span>
-                      <span lang={code.toLowerCase()}>{name}</span>
+                      {sample && (
+                        <span className={`flex items-center gap-1 text-[11px] ${on ? "text-white/85" : "text-muted"}`}>
+                          {on ? <Pause size={11} /> : <Play size={11} />}
+                          {sample.gender}
+                        </span>
+                      )}
+                    </>
+                  );
+                  const cls = "flex min-h-[40px] min-w-0 flex-col justify-center gap-0.5 rounded-[10px] px-2.5 py-1 text-left text-[12.5px]";
+                  return sample ? (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => void play(code)}
+                      aria-pressed={on}
+                      aria-label={`Hear the ${name} ${sample.gender} voice`}
+                      className={`${cls} cursor-pointer transition-[background,box-shadow] ${on ? "text-white" : "hover:shadow-[inset_0_0_0_1px_var(--line-strong)]"}`}
+                      style={{ background: on ? "linear-gradient(120deg, #0a84ff, #af52de)" : `oklch(0.7 0.16 ${hue} / 0.14)` }}
+                    >
+                      {body}
+                    </button>
+                  ) : (
+                    <span key={code} className={cls} style={{ background: `oklch(0.7 0.16 ${hue} / 0.14)` }}>
+                      {body}
                     </span>
                   );
                 })}
               </div>
+              <p className="mt-2 text-[12px] text-faint">Russian and Ukrainian are supported too.</p>
             </div>
           </Reveal>
         </div>
