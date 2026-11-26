@@ -10,6 +10,7 @@ import { Skills } from "@/components/sections/Skills";
 import { Security } from "@/components/sections/Security";
 import { WhatsNew } from "@/components/sections/WhatsNew";
 import { LiveScenes } from "@/components/sections/LiveScenes";
+import { Juno } from "@/components/sections/Juno";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <Providers />
         <Security />
         <LiveScenes />
+        <Juno />
         <WhatsNew />
         <Download />
       </main>

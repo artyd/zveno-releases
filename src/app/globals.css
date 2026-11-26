@@ -645,3 +645,101 @@ html {
 @keyframes scene-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes scene-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes scene-progress { from { width: 0%; } to { width: 100%; } }
+
+/* Juno (New in 0.10.5): the voice call with the Orchestrator, rebuilt from the app's call screen
+   (Zveno repo, packages/ui/src/call/call.css: the call's own tokens and Apple's system colours). */
+.juno {
+  --call-ok: #30d158;
+  --call-warn: #ff9f0a;
+  --call-err: #ff453a;
+  --call-blue: #0a84ff;
+  --call-bg: rgba(250, 251, 253, 0.9);
+  --call-text: #1b1e26;
+  --call-muted: #545a6a;
+  --call-line: rgba(30, 40, 70, 0.1);
+  --call-chip: rgba(30, 40, 70, 0.06);
+  --call-pill: rgba(252, 252, 254, 0.94);
+  --call-ring: rgba(60, 200, 140, 0.45);
+}
+[data-theme="dark"] .juno {
+  --call-bg: rgba(24, 26, 34, 0.88);
+  --call-text: #eef1f6;
+  --call-muted: rgba(238, 241, 246, 0.72);
+  --call-line: rgba(255, 255, 255, 0.1);
+  --call-chip: rgba(255, 255, 255, 0.08);
+  --call-pill: rgba(16, 18, 26, 0.9);
+  --call-ring: rgba(80, 200, 230, 0.45);
+}
+.juno-bug {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.juno-bug > .juno-art {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.juno-bug > .juno-art svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+.juno-bug > .juno-ring {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  border: 2px solid var(--call-ring);
+  opacity: 0;
+}
+[data-call-state="listening"] .juno-bug > .juno-art { animation: junoBreathe 2.6s ease-in-out infinite; }
+[data-call-state="speaking"] .juno-bug > .juno-ring { animation: junoRing 1.4s ease-out infinite; }
+[data-call-state="speaking"] .juno-bug > .juno-ring:nth-child(2) { animation-delay: 0.45s; }
+[data-call-state="speaking"] .juno-bug > .juno-ring:nth-child(3) { animation-delay: 0.9s; }
+[data-call-state="thinking"] .juno-bug > .juno-art { animation: junoThink 2.4s linear infinite; }
+@keyframes junoBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes junoRing { from { opacity: 0.9; transform: scale(0.86); } to { opacity: 0; transform: scale(1.25); } }
+@keyframes junoThink { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(360deg); } }
+.juno-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.juno-wave > i {
+  width: 4px;
+  height: 6px;
+  border-radius: 2px;
+  opacity: 0.85;
+  transition: height 0.08s linear, background-color 0.3s;
+}
+.juno-ctl {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--call-line);
+  background: var(--call-chip);
+  color: var(--call-text);
+}
+.juno-ctl svg { width: 19px; height: 19px; }
+.juno-ctl.is-end {
+  width: 56px;
+  border-radius: 22px;
+  border-color: transparent;
+  background: var(--call-err);
+  color: #fff;
+}
+/* The stage's colour behind the Bug follows the call's state. */
+.juno-aura {
+  transition: background 0.8s ease;
+}
+[data-theme="dark"] .juno-aura {
+  opacity: 0.75;
+}
+.slide:not(.is-visible) :is(.juno-bug > .juno-art, .juno-bug > .juno-ring) {
+  animation-play-state: paused;
+}
+@keyframes junoLine { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.juno-line { animation: junoLine 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }

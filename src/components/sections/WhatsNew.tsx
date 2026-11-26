@@ -1,4 +1,4 @@
-import { Check, CircleDot, Clapperboard, MessageCircleQuestion, Palette, PieChart, RefreshCw, Sparkles } from "lucide-react";
+import { ArrowRight, AudioLines, Check, CircleDot, Clapperboard, MessageCircleQuestion, Palette, PieChart, RefreshCw, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { Slide } from "../Slide";
@@ -57,11 +57,37 @@ export function WhatsNew() {
           New in 0.10.5
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
-          See what your agents spend and ask. <span className="text-faint">And let video and design work out of the box.</span>
+          Call the Orchestrator, and see what your agents spend and ask.{" "}
+          <span className="text-faint">Video and design work out of the box.</span>
         </h2>
       </Reveal>
 
       <Reveal stagger={60} className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 deck:mt-[clamp(14px,3vh,32px)] deck:gap-[clamp(8px,1.4vh,14px)]">
+        <a
+          href="#juno"
+          className="glass-panel group relative flex flex-col gap-3 overflow-hidden rounded-[16px] p-4 transition-colors hover:bg-hover sm:col-span-2 sm:flex-row sm:items-center lg:col-span-4 deck:p-[clamp(12px,2vh,18px)]"
+        >
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-25"
+            style={{ background: "linear-gradient(100deg, #30d158, #0a84ff 40%, #af52de 70%, #ff9f0a)" }}
+          />
+          <span
+            className="relative flex size-9 shrink-0 items-center justify-center rounded-[10px] text-white"
+            style={{ background: "linear-gradient(135deg, #30d158, #0a84ff)" }}
+          >
+            <AudioLines size={18} />
+          </span>
+          <span className="relative min-w-0 flex-1">
+            <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Juno: a voice call with the Orchestrator</span>
+            <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
+              Talk as on the phone. It answers in your language, and speech is heard and spoken on your computer. Windows first.
+            </span>
+          </span>
+          <span className="relative inline-flex shrink-0 items-center gap-1 text-[13.5px] font-medium">
+            See Juno <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
         {FEATURES.map(({ icon: Icon, title, body }) => (
           <div key={title} className="glass-panel rounded-[16px] p-4 deck:p-[clamp(12px,2vh,18px)]">
             <span className="flex size-9 items-center justify-center rounded-[10px] bg-accent-bg text-accent">
