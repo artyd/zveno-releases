@@ -344,7 +344,7 @@ export function VoiceCall() {
           </h2>
         </Reveal>
 
-        <div className="vcall mt-6 grid items-start gap-4 lg:grid-cols-[1.08fr_1fr] deck:mt-[clamp(12px,2.6vh,28px)] deck:gap-[clamp(10px,1.8vh,18px)]">
+        <div className="vcall mt-6 grid items-start gap-4 lg:grid-cols-[1.08fr_1fr] lg:items-stretch deck:mt-[clamp(12px,2.6vh,28px)] deck:gap-[clamp(10px,1.8vh,18px)]">
           {/* The call, as the app shows it: full screen over a blurred Zveno, then minimised to its pill. */}
           <Reveal className="flex flex-col gap-3 deck:gap-[clamp(8px,1.4vh,12px)]">
             <div
@@ -464,7 +464,7 @@ export function VoiceCall() {
             </div>
 
             {/* The languages: press one to hear the call's voice in it. */}
-            <div className="glass-panel rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
+            <div className="glass-panel flex flex-1 flex-col rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
               <div className="flex items-end gap-3">
                 <span
                   className="bg-clip-text text-[52px] leading-[0.9] font-semibold tracking-[-0.04em] text-transparent deck:text-[clamp(34px,5.6vh,60px)]"
@@ -477,13 +477,13 @@ export function VoiceCall() {
                   <span className="block text-[12.5px] leading-snug text-muted">It answers in the one you speak. Press a voice to hear it.</span>
                 </span>
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-1.5 sm:grid-cols-3" role="group" aria-label="Hear the voice in each language">
+              <div className="mt-3 grid flex-1 auto-rows-fr grid-cols-2 gap-1.5 sm:grid-cols-3" role="group" aria-label="Hear the voice in each language">
                 {LANGS.filter(({ code }) => SAMPLES.some((x) => x.lang === code)).map(({ code, name }, i) => {
                   const hue = (150 + i * 40) % 360;
                   return (
                     <div
                       key={code}
-                      className="flex min-w-0 flex-col gap-1 rounded-[10px] px-2.5 py-1.5 text-[12.5px] deck:gap-0.5 deck:py-1"
+                      className="flex min-w-0 flex-col justify-center gap-1 rounded-[10px] px-2.5 py-1.5 text-[12.5px] deck:gap-0.5 deck:py-1"
                       style={{ background: `oklch(0.7 0.16 ${hue} / 0.14)` }}
                     >
                       <span className="flex min-w-0 items-center gap-1.5">
@@ -520,9 +520,6 @@ export function VoiceCall() {
                   );
                 })}
               </div>
-              <p className="mt-2 text-[12px] text-faint">
-                Also <span lang="ru">Русский</span>: supported, no sample here.
-              </p>
             </div>
           </Reveal>
         </div>
