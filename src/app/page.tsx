@@ -11,6 +11,9 @@ import { Security } from "@/components/sections/Security";
 import { WhatsNew } from "@/components/sections/WhatsNew";
 import { LiveScenes } from "@/components/sections/LiveScenes";
 import { VoiceCall } from "@/components/sections/VoiceCall";
+import { Autopilot } from "@/components/sections/Autopilot";
+import { Rocket } from "@/components/sections/Rocket";
+import { ApiKeys } from "@/components/sections/ApiKeys";
 
 export default function Home() {
   return (
@@ -27,6 +30,9 @@ export default function Home() {
         <Security />
         <LiveScenes />
         <VoiceCall />
+        <Autopilot />
+        <Rocket />
+        <ApiKeys />
         <WhatsNew />
         <Download />
       </main>

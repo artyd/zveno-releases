@@ -10,8 +10,10 @@ export const NAV = [
   { href: "#skills", label: "Skills" },
   { href: "#providers", label: "Providers" },
   { href: "#security", label: "Security" },
-  { href: "#scenes", label: "New in 0.10.8" },
-  { href: "#speak", label: "Speak & Ship" },
+  { href: "#autopilot", label: "Autopilot" },
+  { href: "#rocket", label: "Rocket" },
+  { href: "#keys", label: "API keys" },
+  { href: "#new", label: "New in 0.11.0" },
 ];
 
 export const QUOTES = [

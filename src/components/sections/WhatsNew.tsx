@@ -1,53 +1,49 @@
-import { ArrowRight, AudioLines, Check, CircleDot, Clapperboard, MessageCircleQuestion, Palette, PieChart, RefreshCw, Sparkles } from "lucide-react";
+import { ArrowRight, Compass, Eraser, KeyRound, MonitorSmartphone, Palette, Rocket } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { Slide } from "../Slide";
 
-// What 0.10.5 adds, from the release notes (Zveno repo, apps/desktop/release-notes/0.10.5.md).
-const FEATURES: { icon: LucideIcon; title: string; body: string }[] = [
+// What 0.11.0 adds (Zveno repo: .scratch/overnight-2026-11-27/PLAN.md workstreams A–E, the What's new tour's copy in
+// packages/ui/src/strings.ts `whatsNew.versions['0.11.0']`), then what came in 0.10.5 – 0.10.8 in one line.
+const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string; href?: string }[] = [
   {
-    icon: Sparkles,
-    title: "Live scenes",
-    body: "Ten pixel-art window backgrounds that answer your cursor. Six quick picks in Settings, the rest one click away.",
+    icon: KeyRound,
+    hue: "#ff9f0a",
+    title: "API keys",
+    body: "Add your company's API keys per provider. At the plan's limit Zveno moves to them in your order and says when they are spent.",
+    href: "#keys",
   },
   {
-    icon: CircleDot,
-    title: "Context ring",
-    body: "Each agent's header shows how full its context is, and a click shows what fills it.",
-  },
-  {
-    icon: PieChart,
-    title: "Where tokens go",
-    body: "A donut in the right panel, by agent, by kind of work or by model.",
-  },
-  {
-    icon: Clapperboard,
-    title: "Video out of the box",
-    body: "Remotion, HyperFrames and FFmpeg download on first launch. Agents render videos without asking you to install anything.",
+    icon: MonitorSmartphone,
+    hue: "#30d158",
+    title: "Ask by voice, done on screen",
+    body: "In a Speak & Ship call the Orchestrator can use Computer use for you. What needs your approval is still pressed on screen.",
+    href: "#speak",
   },
   {
     icon: Palette,
-    title: "Design skills",
-    body: "Mobile apps, web apps, design systems and graphics. Appllama's app design skills are in the Library.",
+    hue: "#af52de",
+    title: "Design taste Pack",
+    body: "Eight Skills on layout, spacing, type scales, states and real references. Agents read them before they design.",
   },
   {
-    icon: MessageCircleQuestion,
-    title: "Terminal questions in the Feed",
-    body: "When an agent in the Terminal asks something, the question shows in the Feed and the Inbox, and you answer it there.",
-  },
-  {
-    icon: RefreshCw,
-    title: "MVP and Roadmap keep up",
-    body: "Re-check reads your code again and moves the MVP score and Roadmap steps as the work lands.",
+    icon: Compass,
+    hue: "#0a84ff",
+    title: "Tours",
+    body: "The full tour of the app, a Settings tour, and What's new: a short tour of only what changed, once after an update.",
   },
 ];
 
-const FIXES = [
-  "New task starts Claude Code as the Orchestrator whenever it can lead",
-  "Agents never commit with your email: in a repo with no author they commit as Zveno Agent",
-  "Agents no longer sit idle with their task in the input",
-  "Autopilot accepts a local database password in .env.example",
-  "Pure, clear chart colours",
+const EARLIER = [
+  "Speak & Ship voice calls",
+  "Live scenes",
+  "Context ring",
+  "Where tokens go",
+  "Video out of the box",
+  "Design skills",
+  "Terminal questions in the Feed",
+  "MVP and Roadmap keep up",
+  "Agents never commit with your email",
 ];
 
 export function WhatsNew() {
@@ -56,59 +52,73 @@ export function WhatsNew() {
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="label">
           <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full bg-accent align-middle" />
-          New in 0.10.5 – 0.10.8
+          New in 0.11.0
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
-          Call the Orchestrator, and see what your agents spend and ask.{" "}
-          <span className="text-faint">Video and design work out of the box.</span>
+          Both providers as one Team, and work past the plan&apos;s limit.{" "}
+          <span className="text-faint">Ask by voice and see it done on screen.</span>
         </h2>
       </Reveal>
 
       <Reveal stagger={60} className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 deck:mt-[clamp(14px,3vh,32px)] deck:gap-[clamp(8px,1.4vh,14px)]">
         <a
-          href="#speak"
+          href="#rocket"
           className="glass-panel group relative flex flex-col gap-3 overflow-hidden rounded-[16px] p-4 transition-colors hover:bg-hover sm:col-span-2 sm:flex-row sm:items-center lg:col-span-4 deck:p-[clamp(12px,2vh,18px)]"
         >
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 opacity-25"
-            style={{ background: "linear-gradient(100deg, #30d158, #0a84ff 40%, #af52de 70%, #ff9f0a)" }}
+            style={{ background: "linear-gradient(100deg, #ff9f0a, #ff6a3d 35%, #ff375f 65%, #7c8cff)" }}
           />
-          <span
-            className="relative flex size-9 shrink-0 items-center justify-center rounded-[10px] text-white"
-            style={{ background: "linear-gradient(135deg, #30d158, #0a84ff)" }}
-          >
-            <AudioLines size={18} />
+          <span className="relative flex size-9 shrink-0 items-center justify-center rounded-[10px] text-white" style={{ background: "var(--rocket)" }}>
+            <Rocket size={18} />
           </span>
           <span className="relative min-w-0 flex-1">
-            <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Speak &amp; Ship: a voice call with the Orchestrator</span>
+            <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Rocket: Claude Code and Codex as one Team</span>
             <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
-              Talk as on the phone, in any of 10 languages. Speech is heard and spoken on your computer, about twice as fast since 0.10.6. Windows first.
+              Opus 5.5 leads. The other provider reviews every Task, branches merge one at a time, and one provider picks up when the other runs out.
             </span>
           </span>
           <span className="relative inline-flex shrink-0 items-center gap-1 text-[13.5px] font-medium">
             See it <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
           </span>
         </a>
-        {FEATURES.map(({ icon: Icon, title, body }) => (
-          <div key={title} className="glass-panel rounded-[16px] p-4 deck:p-[clamp(12px,2vh,18px)]">
-            <span className="flex size-9 items-center justify-center rounded-[10px] bg-accent-bg text-accent">
-              <Icon size={18} />
-            </span>
-            <h3 className="mt-3 text-[15.5px] leading-snug font-semibold tracking-[-0.01em] deck:mt-[clamp(8px,1.4vh,12px)]">{title}</h3>
-            <p className="mt-1 text-[13.5px] leading-relaxed text-muted">{body}</p>
+        {FEATURES.map(({ icon: Icon, hue, title, body, href }) => {
+          const inner = (
+            <>
+              <span className="flex size-9 items-center justify-center rounded-[10px] text-white" style={{ background: hue, boxShadow: `0 6px 18px -6px ${hue}` }}>
+                <Icon size={18} />
+              </span>
+              <h3 className="mt-3 text-[15.5px] leading-snug font-semibold tracking-[-0.01em] deck:mt-[clamp(8px,1.4vh,12px)]">{title}</h3>
+              <p className="mt-1 text-[13.5px] leading-relaxed text-muted">{body}</p>
+            </>
+          );
+          return href ? (
+            <a key={title} href={href} className="glass-panel rounded-[16px] p-4 transition-colors hover:bg-hover deck:p-[clamp(12px,2vh,18px)]">
+              {inner}
+            </a>
+          ) : (
+            <div key={title} className="glass-panel rounded-[16px] p-4 deck:p-[clamp(12px,2vh,18px)]">
+              {inner}
+            </div>
+          );
+        })}
+        <div className="glass-panel flex gap-3 rounded-[16px] p-4 deck:p-[clamp(12px,2vh,18px)]">
+          <Eraser size={18} className="mt-0.5 shrink-0 text-muted" />
+          <div>
+            <p className="label !text-[10.5px]">Removed</p>
+            <p className="mt-1 text-[13.5px] leading-snug text-muted">Liquid glare, the highlight that followed the cursor across the glass.</p>
           </div>
-        ))}
-        <div className="glass-panel rounded-[16px] p-4 deck:p-[clamp(12px,2vh,18px)]">
-          <p className="label !text-[10.5px]">Fixed</p>
-          <ul className="mt-2 space-y-1.5">
-            {FIXES.map((f) => (
-              <li key={f} className="flex gap-2 text-[13px] leading-snug text-muted">
-                <Check size={14} className="mt-0.5 shrink-0 text-ok" />
-                {f}
-              </li>
+        </div>
+        <div className="glass-panel rounded-[16px] p-4 lg:col-span-3 deck:p-[clamp(12px,2vh,18px)]">
+          <p className="label !text-[10.5px]">Earlier, in 0.10.5 – 0.10.8</p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {EARLIER.map((e) => (
+              <span key={e} className="rounded-[8px] bg-chip px-2 py-[3px] text-[12px] text-muted">
+                {e}
+              </span>
             ))}
-          </ul>
+          </div>
         </div>
       </Reveal>
     </Slide>
