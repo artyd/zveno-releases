@@ -5,7 +5,7 @@ import { SectionHead } from "../SectionHead";
 import { Slide } from "../Slide";
 
 const PROVIDERS = [
-  { name: "Claude Code", by: "Anthropic", models: "Fable 5.1 · Opus 5.5 · Sonnet 5.5 · Haiku 5.5", plan: "Claude subscription or API key", on: true, hue: 45 },
+  { name: "Claude Code", by: "Anthropic", models: "Opus 5.5 · Fable 5.2 · Sonnet 5.5 · Haiku 5.5", plan: "Claude subscription or API key", on: true, hue: 45 },
   { name: "Codex CLI", by: "OpenAI", models: "GPT-6.1 Sol · GPT-6.1 Terra · GPT-6 Astra", plan: "ChatGPT subscription or API key", on: true, hue: 165 },
   { name: "Gemini CLI", by: "Google", models: "Gemini 4 · Gemini 3.8 Flash", plan: "Google account or API key", on: false, hue: 258 },
   { name: "Grok Build", by: "xAI", models: "Grok 4.6", plan: "X account or API key", on: false, hue: 300 },
@@ -49,7 +49,7 @@ function Team() {
           <span className="text-left">
             <span className="block text-[14.5px] leading-tight font-semibold">Orchestrator</span>
             <span className="mt-1 block">
-              <Tag provider="Claude Code" model="Fable 5.1" />
+              <Tag provider="Claude Code" model="Opus 5.5" />
             </span>
           </span>
         </div>
