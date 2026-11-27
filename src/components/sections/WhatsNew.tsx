@@ -17,7 +17,7 @@ const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string; hr
     icon: MonitorSmartphone,
     hue: "#30d158",
     title: "Ask by voice, done on screen",
-    body: "In a Speak & Ship call the Orchestrator can use Computer use for you, and answers faster: it thinks at low effort while the call is on. Approvals are still pressed on screen.",
+    body: "In a Speak & Ship call the Orchestrator can use Computer use for you, and answers faster: speech starts while it still writes. Approvals are still pressed on screen.",
     href: "#speak",
   },
   {
@@ -76,7 +76,7 @@ export function WhatsNew() {
           <span className="relative min-w-0 flex-1">
             <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Rocket: Claude Code and Codex as one Team</span>
             <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
-              Opus 5.5 leads. The other provider reviews every Task, branches merge one at a time, the Orchestrator can fix a conflict, and one provider picks up when the other runs out.
+              Opus 5.5 leads Codex on its newest models. The other provider reviews every Task, branches merge one at a time, the Orchestrator can fix a conflict, and one provider picks up when the other runs out.
             </span>
           </span>
           <span className="relative inline-flex shrink-0 items-center gap-1 text-[13.5px] font-medium">
