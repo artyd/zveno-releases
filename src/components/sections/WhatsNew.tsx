@@ -3,14 +3,14 @@ import type { LucideIcon } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { Slide } from "../Slide";
 
-// What 0.11.0 adds (Zveno repo: .scratch/overnight-2026-11-27/PLAN.md workstreams A–E, the What's new tour's copy in
+// What 0.11 adds (0.11.0, and 0.11.1's key check and Rocket conflicts) (Zveno repo: .scratch/overnight-2026-11-27/PLAN.md workstreams A–E, the What's new tour's copy in
 // packages/ui/src/strings.ts `whatsNew.versions['0.11.0']`), then what came in 0.10.5 – 0.10.8 in one line.
 const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string; href?: string }[] = [
   {
     icon: KeyRound,
     hue: "#ff9f0a",
     title: "API keys",
-    body: "Add your company's API keys per provider. At the plan's limit Zveno moves to them in your order and says when they are spent.",
+    body: "Add your company's API keys per provider. Each key is checked when you add it. At the plan's limit Zveno moves to them in your order and says when they are spent.",
     href: "#keys",
   },
   {
@@ -52,7 +52,7 @@ export function WhatsNew() {
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="label">
           <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full bg-accent align-middle" />
-          New in 0.11.0
+          New in 0.11
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
           Both providers as one Team, and work past the plan&apos;s limit.{" "}
@@ -76,7 +76,7 @@ export function WhatsNew() {
           <span className="relative min-w-0 flex-1">
             <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Rocket: Claude Code and Codex as one Team</span>
             <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
-              Opus 5.5 leads. The other provider reviews every Task, branches merge one at a time, and one provider picks up when the other runs out.
+              Opus 5.5 leads. The other provider reviews every Task, branches merge one at a time, the Orchestrator can fix a conflict, and one provider picks up when the other runs out.
             </span>
           </span>
           <span className="relative inline-flex shrink-0 items-center gap-1 text-[13.5px] font-medium">

@@ -211,7 +211,7 @@ export function ApiKeys() {
           </Reveal>
 
           <Reveal stagger={60} className="flex min-w-0 flex-col gap-3 deck:gap-[clamp(8px,1.3vh,12px)]">
-            <Features items={FEATURES} />
+            <Features items={FEATURES} fill />
             <div className="glass-panel rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
               <p className="flex items-center gap-2 text-[14px] font-semibold">
                 <LockKeyhole size={15} className="text-accent" /> Kept on this PC

@@ -75,9 +75,10 @@ export function Head({ kicker, dot, title, rest, gradient }: { kicker: string; d
 export type Feature = { icon: LucideIcon; hue: string; title: string; body: string };
 
 /** Feature cards, two to a row: a coloured icon beside the title, a short body under it. */
-export function Features({ items, compact = false }: { items: Feature[]; compact?: boolean }) {
+// `fill`: the cards share the column's height, so the column ends level with the slide's window (as on Autopilot).
+export function Features({ items, compact = false, fill = false }: { items: Feature[]; compact?: boolean; fill?: boolean }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 deck:gap-[clamp(8px,1.3vh,12px)]">
+    <div className={`grid gap-3 sm:grid-cols-2 deck:gap-[clamp(8px,1.3vh,12px)] ${fill ? "flex-1 auto-rows-fr" : ""}`}>
       {items.map(({ icon: Icon, hue, title, body }) => (
         <div key={title} className={`glass-panel relative overflow-hidden rounded-[16px] p-4 ${compact ? "deck:p-[clamp(9px,1.5vh,14px)]" : "deck:p-[clamp(10px,1.8vh,16px)]"}`}>
           <span aria-hidden="true" className="pointer-events-none absolute -top-10 -right-10 size-28 rounded-full opacity-40 blur-2xl" style={{ background: hue }} />

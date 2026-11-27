@@ -259,8 +259,10 @@ export function Rocket() {
           </Reveal>
 
           <Reveal stagger={60} className="flex min-w-0 flex-col gap-3 deck:gap-[clamp(8px,1.3vh,12px)]">
-            <Features items={FEATURES} compact />
-            <p className="px-1 text-[12px] text-faint">Rocket sits next to Autopilot and needs both providers connected. Quality first: parallel work is the means, not the goal.</p>
+            <Features items={FEATURES} compact fill />
+            <div className="glass-panel rounded-[16px] p-4 deck:p-[clamp(10px,1.8vh,16px)]">
+              <p className="text-[12.5px] leading-relaxed text-muted">Rocket sits next to Autopilot and needs both providers connected. Quality first: parallel work is the means, not the goal.</p>
+            </div>
           </Reveal>
         </div>
       </div>
