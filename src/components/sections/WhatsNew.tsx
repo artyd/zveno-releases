@@ -1,4 +1,4 @@
-import { ArrowRight, Compass, Eraser, KeyRound, MonitorSmartphone, Palette, Rocket } from "lucide-react";
+import { ArrowRight, Brain, Compass, Eraser, KeyRound, MonitorSmartphone, Palette, Rocket } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { Slide } from "../Slide";
@@ -52,7 +52,7 @@ export function WhatsNew() {
       <Reveal className="mx-auto max-w-4xl text-center">
         <p className="label">
           <span className="mr-1.5 inline-block size-1.5 -translate-y-px rounded-full bg-accent align-middle" />
-          New in 0.11
+          New in 0.12
         </p>
         <h2 className="mt-3 text-[30px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance sm:text-[40px] deck:mt-[clamp(4px,1vh,10px)] deck:text-[clamp(22px,3.9vh,38px)]">
           Both providers as one Team, and work past the plan&apos;s limit.{" "}
@@ -83,6 +83,23 @@ export function WhatsNew() {
             See it <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
           </span>
         </a>
+        <div className="glass-panel relative flex flex-col gap-3 overflow-hidden rounded-[16px] p-4 sm:col-span-2 sm:flex-row sm:items-center lg:col-span-4 deck:p-[clamp(12px,2vh,18px)]">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-20"
+            style={{ background: "linear-gradient(100deg, #30d158, #0a84ff 50%, #af52de)" }}
+          />
+          <span className="relative flex size-9 shrink-0 items-center justify-center rounded-[10px] text-white" style={{ background: "#0a84ff", boxShadow: "0 6px 18px -6px #0a84ff" }}>
+            <Brain size={18} />
+          </span>
+          <span className="relative min-w-0 flex-1">
+            <span className="block text-[15.5px] leading-snug font-semibold tracking-[-0.01em]">Project memory: Agents remember the Project</span>
+            <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted">
+              Install ai-memory from Settings in one press. What Agents learn stays between sessions and between Claude Code and Codex, and in Rocket a Take-over starts from a handoff of what was tried.
+            </span>
+          </span>
+          <span className="relative shrink-0 rounded-[8px] bg-chip px-2 py-[3px] font-mono text-[11.5px] text-muted">New in 0.12</span>
+        </div>
         {FEATURES.map(({ icon: Icon, hue, title, body, href }) => {
           const inner = (
             <>

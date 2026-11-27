@@ -13,7 +13,7 @@ export const NAV = [
   { href: "#autopilot", label: "Autopilot" },
   { href: "#rocket", label: "Rocket" },
   { href: "#keys", label: "API keys" },
-  { href: "#new", label: "New in 0.11" },
+  { href: "#new", label: "New in 0.12" },
 ];
 
 export const QUOTES = [
