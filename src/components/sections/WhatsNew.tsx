@@ -24,7 +24,7 @@ const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string; hr
     icon: Palette,
     hue: "#af52de",
     title: "Design taste Pack",
-    body: "Eight Skills on layout, spacing, type scales, states and real references. Agents read them before they design.",
+    body: "Skills on calm layouts, type scales, states and real references, and a designer Agent on Opus that checks its screens for calm and beauty.",
   },
   {
     icon: Compass,
