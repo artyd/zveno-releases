@@ -17,7 +17,7 @@ const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string; hr
     icon: MonitorSmartphone,
     hue: "#30d158",
     title: "Ask by voice, done on screen",
-    body: "In a Speak & Ship call the Orchestrator can use Computer use for you. What needs your approval is still pressed on screen.",
+    body: "In a Speak & Ship call the Orchestrator can use Computer use for you, and answers faster: it thinks at low effort while the call is on. Approvals are still pressed on screen.",
     href: "#speak",
   },
   {
