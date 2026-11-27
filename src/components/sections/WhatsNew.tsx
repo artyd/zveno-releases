@@ -30,7 +30,7 @@ const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string; hr
     icon: Compass,
     hue: "#0a84ff",
     title: "Tours",
-    body: "The full tour of the app, a Settings tour, and What's new: a short tour of only what changed, once after an update.",
+    body: "The full tour of the app, a Settings tour, and What's new after each update, also from Settings. Sessions are named after their work.",
   },
 ];
 
