@@ -24,7 +24,7 @@ const FEATURES: { icon: LucideIcon; hue: string; title: string; body: string; hr
     icon: Palette,
     hue: "#af52de",
     title: "Design taste Pack",
-    body: "Skills on calm layouts, type scales, states and real references, and a designer Agent on Opus that checks its screens for calm and beauty.",
+    body: "A designer Agent on Opus that draws for iOS 27 Liquid Glass and Material 3 Expressive, and checks its screens for calm and beauty.",
   },
   {
     icon: Compass,
